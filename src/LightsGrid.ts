@@ -24,7 +24,17 @@ export class LightsGrid {
   }
 
   turnOff(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    throw Error
+    const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
+    const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
+
+    const xSecondPointOfArea = xFirstCoordinate > xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
+    const ySecondPointOfArea = yFirstCoordinate > ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
+
+    for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
+      for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
+        this.grid[i][j] = this.TURNED_OFF
+      }
+    }
   }
 
   turnedOnLights() {
