@@ -1,10 +1,16 @@
 import { describe, it, expect } from "vitest"
 import { myFunction } from "./main.js"
 
-describe("Default test", () => {
-  it("should work", () => {
-    const result = myFunction()
+class LightsGrid {
+  turnedOnLights() {
+    throw Error
+  }
+}
 
-    expect(result).toBe(true)
+describe("LightsGrid", () => {
+  it("should create a grid of 1000 x 1000 with everything turned off", () => {
+    const lightsGrid = new LightsGrid()
+
+    expect(lightsGrid.turnedOnLights()).toBe(0)
   })
 })
