@@ -1,24 +1,20 @@
 export class LightsGridIter2 {
-  private grid: boolean[][]
-
-  private TURNED_OFF = false
-
-  private TURNED_ON = true
+  private grid: number[][]
 
   constructor() {
-    this.grid = Array.from(new Array(1000), () => Array.from(new Array(1000), () => this.TURNED_OFF))
+    this.grid = Array.from(new Array(1000), () => Array.from(new Array(1000), () => 0))
   }
 
   turnOn(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, () => this.TURNED_ON)
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, (value) => value + 1)
   }
 
   turnOff(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, () => this.TURNED_OFF)
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, (value) => value - 1)
   }
 
   toggle(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, (value) => !value)
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, (value) => value + 2)
   }
 
   private loopGrid(
@@ -26,7 +22,7 @@ export class LightsGridIter2 {
     yFirstCoordinate: number,
     xSecondCoordinate: number,
     ySecondCoordinate: number,
-    callback: (value: boolean) => boolean,
+    callback: (value: number) => number,
   ) {
     const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
     const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
@@ -46,7 +42,7 @@ export class LightsGridIter2 {
 
     for (const row of this.grid) {
       for (const cell of row) {
-        if (cell) count++
+        count += cell
       }
     }
     return count
