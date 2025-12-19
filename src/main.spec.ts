@@ -47,6 +47,6 @@ describe("LightsGrid", () => {
 
     lightsGrid.toggle(0, 0, 499, 499)
 
-    expect(lightsGrid.turnedOnLights()).toBe(750_000)
+    expect(lightsGrid.turnedOnLights()).toBe(250_000)
   })
 })

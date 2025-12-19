@@ -1,7 +1,4 @@
 export class LightsGrid {
-  toggle(arg0: number, arg1: number, arg2: number, arg3: number) {
-    throw new Error("Method not implemented.")
-  }
   private grid: boolean[][]
 
   private TURNED_OFF = false
@@ -36,6 +33,20 @@ export class LightsGrid {
     for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
       for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
         this.grid[i][j] = this.TURNED_OFF
+      }
+    }
+  }
+
+  toggle(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
+    const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
+    const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
+
+    const xSecondPointOfArea = xFirstCoordinate > xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
+    const ySecondPointOfArea = yFirstCoordinate > ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
+
+    for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
+      for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
+        this.grid[i][j] = !this.grid[i][j]
       }
     }
   }
