@@ -16,10 +16,18 @@ describe("LightsGrid", () => {
     expect(lightsGrid.turnedOnLights()).toBe(1_000_000)
   })
 
-  it("should return 500.000 after turning quarter of the grid", () => {
+  it("should return 250.000 after turning quarter of the grid", () => {
     const lightsGrid = new LightsGrid()
 
     lightsGrid.turnOn(0, 0, 499, 499)
+
+    expect(lightsGrid.turnedOnLights()).toBe(250_000)
+  })
+
+  it("should return 250.000 after turning quarter of the grid with reversed coordinates", () => {
+    const lightsGrid = new LightsGrid()
+
+    lightsGrid.turnOn(499, 499, 0, 0)
 
     expect(lightsGrid.turnedOnLights()).toBe(250_000)
   })
