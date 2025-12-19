@@ -49,4 +49,20 @@ describe("LightsGrid", () => {
 
     expect(lightsGrid.turnedOnLights()).toBe(250_000)
   })
+
+  it("should handle complex sequence of operations", () => {
+    const lightsGrid = new LightsGrid()
+
+    lightsGrid.turnOn(887, 9, 959, 629)
+    lightsGrid.turnOn(454, 398, 844, 448)
+    lightsGrid.turnOff(539, 243, 559, 965)
+    lightsGrid.turnOff(370, 819, 676, 868)
+    lightsGrid.turnOff(145, 40, 370, 997)
+    lightsGrid.turnOff(301, 3, 808, 453)
+    lightsGrid.turnOn(351, 678, 951, 908)
+    lightsGrid.toggle(720, 196, 897, 994)
+    lightsGrid.toggle(831, 394, 904, 860)
+
+    expect(lightsGrid.turnedOnLights()).toBe(230_022)
+  })
 })
