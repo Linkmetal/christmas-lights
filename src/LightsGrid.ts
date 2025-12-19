@@ -10,34 +10,24 @@ export class LightsGrid {
   }
 
   turnOn(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
-    const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
-
-    const xSecondPointOfArea = xFirstCoordinate > xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
-    const ySecondPointOfArea = yFirstCoordinate > ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
-
-    for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
-      for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
-        this.grid[i][j] = this.TURNED_ON
-      }
-    }
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, () => this.TURNED_ON)
   }
 
   turnOff(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
-    const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
-
-    const xSecondPointOfArea = xFirstCoordinate > xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
-    const ySecondPointOfArea = yFirstCoordinate > ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
-
-    for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
-      for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
-        this.grid[i][j] = this.TURNED_OFF
-      }
-    }
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, () => this.TURNED_OFF)
   }
 
   toggle(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
+    this.loopGrid(xFirstCoordinate, yFirstCoordinate, xSecondCoordinate, ySecondCoordinate, (value) => !value)
+  }
+
+  private loopGrid(
+    xFirstCoordinate: number,
+    yFirstCoordinate: number,
+    xSecondCoordinate: number,
+    ySecondCoordinate: number,
+    callback: (value: boolean) => boolean,
+  ) {
     const xFirstPointOfArea = xFirstCoordinate <= xSecondCoordinate ? xFirstCoordinate : xSecondCoordinate
     const yFirstPointOfArea = yFirstCoordinate <= ySecondCoordinate ? yFirstCoordinate : ySecondCoordinate
 
@@ -46,7 +36,7 @@ export class LightsGrid {
 
     for (let i = xFirstPointOfArea; i <= xSecondPointOfArea; i++) {
       for (let j = yFirstPointOfArea; j <= ySecondPointOfArea; j++) {
-        this.grid[i][j] = !this.grid[i][j]
+        this.grid[i][j] = callback(this.grid[i][j])
       }
     }
   }
