@@ -3,7 +3,7 @@ import { myFunction } from "./main.js"
 
 class LightsGrid {
   turnedOnLights() {
-    throw Error
+    return 0
   }
 }
 
