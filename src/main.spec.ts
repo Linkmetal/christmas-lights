@@ -13,6 +13,6 @@ describe("LightsGrid", () => {
 
     lightsGrid.turnOn(0, 0, 999, 999)
 
-    expect(lightsGrid.turnedOnLights).toBe(1_000_000)
+    expect(lightsGrid.turnedOnLights()).toBe(1_000_000)
   })
 })
