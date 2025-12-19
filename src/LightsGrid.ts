@@ -23,6 +23,10 @@ export class LightsGrid {
     }
   }
 
+  turnOff(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
+    throw Error
+  }
+
   turnedOnLights() {
     let count = 0
 

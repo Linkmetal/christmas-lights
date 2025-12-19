@@ -31,4 +31,14 @@ describe("LightsGrid", () => {
 
     expect(lightsGrid.turnedOnLights()).toBe(250_000)
   })
+
+  it("should return 750.000 after turning off quarter of the grid", () => {
+    const lightsGrid = new LightsGrid()
+
+    lightsGrid.turnOn(0, 0, 999, 999)
+
+    lightsGrid.turnOff(0, 0, 499, 499)
+
+    expect(lightsGrid.turnedOnLights()).toBe(750_000)
+  })
 })
