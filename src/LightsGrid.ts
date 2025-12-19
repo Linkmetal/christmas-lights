@@ -10,7 +10,12 @@ export class LightsGrid {
   }
 
   turnOn(xFirstCoordinate: number, yFirstCoordinate: number, xSecondCoordinate: number, ySecondCoordinate: number) {
-    this.grid = Array.from(new Array(1000), () => Array.from(new Array(1000), () => this.TURNED_ON))
+    // this.grid = Array.from(new Array(1000), () => Array.from(new Array(1000), () => this.TURNED_ON))
+    for (let i = xFirstCoordinate; i <= xSecondCoordinate; i++) {
+      for (let j = yFirstCoordinate; j <= ySecondCoordinate; j++) {
+        this.grid[i][j] = true
+      }
+    }
   }
 
   turnedOnLights() {
